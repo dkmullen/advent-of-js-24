@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      .icon {
+        height: 28px;
+      }
+      #lock-icon {
+        position: absolute;
+        left: 1rem;
+      }
+      #eye-icon {
+        position: relative;
+        right: 2.4rem;
+        height: 28px;
+        width: auto;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+        transform: rotateX(0deg); /* Initial state */
+      }
+      #eye-icon.flipped {
+        transform: rotateX(180deg);
+      }
+      .form-input {
+        height: 32px;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 4px;
+        padding-left: 3rem;
+      }
+      .form-input.text {
+        background-color: black;
+        color: white;
+      }
+    </style>
+    <title>Advent Porject</title>
+  </head>
+  <body>
+    <label for="pw">Password</label>
+    <div style="display: flex; align-items: center">
+      <input type="password" id="pw" class="form-input" />
+      <img
+        src="./images/lock.svg"
+        alt="lock icon"
+        class="icon"
+        id="lock-icon"
+      />
+      <img src="./images/eye.svg" alt="eye icon" class="icon" id="eye-icon" />
+    </div>
+
+    <script>
+      const pwInput = document.querySelector('#pw');
+      const eyeIcon = document.querySelector('#eye-icon');
+      const mutablePaths = document.querySelectorAll('.mutable');
+      let isFlipped = false;
+
+      function togglePasswordVisibility() {
+        isFlipped = !isFlipped;
+        pwInput.type = isFlipped ? 'text' : 'password';
+        eyeIcon.style.transform = isFlipped
+          ? 'rotateX(180deg)'
+          : 'rotateX(0deg)';
+        pwInput.classList.toggle('text');
+      }
+      eyeIcon.addEventListener('click', togglePasswordVisibility);
+    </script>
+  </body>
+</html>
